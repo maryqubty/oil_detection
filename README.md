@@ -26,6 +26,16 @@ Results from training and validation:
 
 ---
 
+## 🎥 Demo
+Videos showing oil spill detection in real-time can be found here:
+ 👉 [result videos] (https://drive.google.com/drive/u/1/folders/1eTG8RwyNfZA0j115slzdCyYajiJ8rK1I) 
+ 
+ ![Screenshot 2025-06-23 183204](https://github.com/user-attachments/assets/e1ce2583-b4ef-4542-80f5-85449d843588) 
+![Screenshot 2025-06-23 183251](https://github.com/user-attachments/assets/f079cf3d-6e36-42e0-8caa-24570643decd) 
+![Screenshot 2025-06-23 183513](https://github.com/user-attachments/assets/1d40736e-c637-4479-934e-ad1eed7ccb4a)
+
+---
+
 ## 🛠️ Installation & Usage
 
 # Clone the official YOLOv5 repository
@@ -40,23 +50,44 @@ python detect.py --weights /path/to/your_repo/weights/best.pt --source /path/to/
 
 
 ## 📦 Dataset
+👉 [dataset folder] (https://drive.google.com/drive/u/1/folders/1m--hffO4b3WT3BXbtJwLuKmfP1Ybcq8S).
+
 The dataset is structured into train, valid, and test.
+
+dataset/
+
+├── train/
+
+│   ├── images
+
+│   ├── labels
+
+├── valid/
+
+│   ├── images
+
+│   ├── labels
+
+├── test/
+
+│   ├── images
+
+│   ├── labels
+
+├── data.yaml
+
 
 Format: YOLO TXT annotations.
 
 Origin: Custom collected + labeled using Roboflow and existing labeled data from roboflow.
 
 For more info, check README.dataset.txt and README.roboflow.txt.
-# 👉 [dataset folder] (https://drive.google.com/drive/u/1/folders/1m--hffO4b3WT3BXbtJwLuKmfP1Ybcq8S)
+ 
 
-🎥 Demo
-Videos showing oil spill detection in real-time can be found here:
-# 👉 [result videos] (https://drive.google.com/drive/u/1/folders/1eTG8RwyNfZA0j115slzdCyYajiJ8rK1I) 
+## 🤖 Future Work
+Integrate real-time video feed from a drone.
 
-🤖 Future Work
-Integrate real-time video feed from DJI Mini 3 Pro
+Trigger drone to stop/freeze upon detection.
 
-Trigger drone to stop/freeze upon detection
-
-Add environmental variation to dataset (waves, light, water color)
+Add environmental variation to dataset (waves, light, water color).
 
