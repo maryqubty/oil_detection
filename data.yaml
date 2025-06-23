@@ -1,0 +1,17 @@
+train: /content/drive/MyDrive/yolo5_oilDetection/train/images
+val: /content/drive/MyDrive/yolo5_oilDetection/valid/images
+test: /content/drive/MyDrive/yolo5_oilDetection/test/images
+
+nc: 3
+names: ['oil_spill', 'oil_spillage', 'oil_detection']
+
+
+roboflow:
+  workspace: oildetection-ypytr
+  project: oil-spillage-vy9zm-dhlhl
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/oildetection-ypytr/oil-spillage-vy9zm-dhlhl/dataset/2
+
+
+
