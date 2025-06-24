@@ -38,15 +38,24 @@ Videos showing oil spill detection in real-time can be found here:
 
 ## 🛠️ Installation & Usage
 
-# Clone the official YOLOv5 repository
+**Clone the official YOLOv5 repository:**
+
 git clone https://github.com/ultralytics/yolov5.git
+
 cd yolov5
 
-# Install dependencies
+**Install dependencies:**
+
 pip install -r requirements.txt
 
-# Run detection using the trained model
+**Run detection using the trained model:**
+
 python detect.py --weights /path/to/your_repo/weights/best.pt --source /path/to/video_or_image
+
+
+## 🔁 Oil Detection Wrapper Function
+
+Instead of manually reviewing output videos, we built a wrapper function **[wrapper_yolo.py]** that checks whether oil was detected in a short sequence of video frames. This makes the model usable in real-time systems like drones.
 
 
 ## 📦 Dataset
