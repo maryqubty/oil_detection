@@ -11,6 +11,12 @@ This project uses **YOLOv5** to detect oil spillage in aerial imagery. It was de
 - **Training Images**: ~6,000  
 - **Training Time**: ~50 epochs
 
+weights/
+
+│   ├── best.pt
+
+│   ├── last.pt
+
 ---
 
 ## 📊 Performance
@@ -55,7 +61,11 @@ python detect.py --weights /path/to/your_repo/weights/best.pt --source /path/to/
 
 ## 🔁 Oil Detection Wrapper Function
 
-Instead of manually reviewing output videos, we built a wrapper function **[wrapper_yolo.py]** that checks whether oil was detected in a short sequence of video frames. This makes the model usable in real-time systems like drones.
+Instead of manually reviewing output videos, we built a **wrapper function** 
+
+├── wrapper_yolo.py
+
+that checks whether oil was detected in a short sequence of video frames. This makes the model usable in real-time systems like drones.
 
 
 ## 📦 Dataset
