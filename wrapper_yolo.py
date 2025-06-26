@@ -1,21 +1,33 @@
 import cv2
 import torch
 
+
+# Load YOLO model only once
+weights_path= 'path/to/best.pt'
+model = torch.hub.load('ultralytics/yolov5', 'custom', path = weights_path, force_reload=False)
+model.conf = 0.25  # confidence threshold
+
+def detect_oil_in_frame(frame) -> bool:
+    """
+    Detects oil spill in a single frame.
+    Returns True if oil is detected, else False.
+    """
+    rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    results = model(rgb)
+    detections = results.pandas().xyxy[0]
+    return not detections.empty
+
+
+
+# Function to detect oil in video frames using YOLOv5
 def detect_oil_in_video_frames(
     video_path: str,
-    weights_path: str = '/content/drive/MyDrive/yolo5_oilDetection/weights/best.pt',
-    conf_threshold: float = 0.25,
     max_frames: int = 5
 ) -> bool:
     """
     Extracts a few frames from a video and detects oil in them.
     Returns True if oil is detected in any frame.
     """
-
-    # Load model
-    model = torch.hub.load('ultralytics/yolov5', 'custom', path=weights_path, force_reload=False)
-    model.conf = conf_threshold
-
     # Open video
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -44,7 +56,7 @@ def detect_oil_in_video_frames(
     cap.release()
     return False  # No oil in sampled frames
 
-
+'''
 # Example usage
 video_path = '/content/drive/MyDrive/yolo5_oilDetection/videosToRunOn/Oil_Spill_TrainedOn.MOV'
 oil_detected = detect_oil_in_video_frames(video_path)
@@ -53,3 +65,4 @@ if oil_detected:
     print("⚠️ Oil detected!")
 else:
     print("✅ No oil detected.")
+'''
