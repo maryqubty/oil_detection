@@ -3,7 +3,8 @@ import torch
 
 
 # Load YOLO model only once
-weights_path= 'path/to/best.pt'
+# Note that the path to the weights should be updated to your own local path:
+weights_path= 'C:\mary\OilDetectionProject\demo_yolo_oil_detection\oil_detection\weights\best_windows.pt'
 model = torch.hub.load('ultralytics/yolov5', 'custom', path = weights_path, force_reload=False)
 model.conf = 0.25  # confidence threshold
 
