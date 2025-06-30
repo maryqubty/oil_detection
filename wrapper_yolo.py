@@ -1,22 +1,25 @@
+import sys
 import cv2
-import torch
+from pathlib import Path
 
+# Add YOLOv5 repo to path
+yolov5_path = Path(r"C:\mary\OilDetectionProject\yolov5")
+sys.path.append(str(yolov5_path))
 
-# Load YOLO model only once
-# Note that the path to the weights should be updated to your own local path:
-weights_path= 'C:\mary\OilDetectionProject\demo_yolo_oil_detection\oil_detection\weights\best_windows.pt'
-model = torch.hub.load('ultralytics/yolov5', 'custom', path = weights_path, force_reload=False)
-model.conf = 0.25  # confidence threshold
+from models.common import DetectMultiBackend
+
+weights_path = r'C:\mary\OilDetectionProject\demo_yolo_oil_detection\oil_detection\weights\best_windows.pt'
+model = DetectMultiBackend(weights_path, device='cpu')
+model.conf = 0.25
+
 
 def detect_oil_in_frame(frame) -> bool:
-    """
-    Detects oil spill in a single frame.
-    Returns True if oil is detected, else False.
-    """
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    results = model(rgb)
-    detections = results.pandas().xyxy[0]
-    return not detections.empty
+    img = [rgb]  # wrap single image in a list
+    results = model(img, augment=False, visualize=False)
+    detections = results[0]  # YOLOv5 returns list of Detections per image
+    return len(detections.boxes) > 0
+
 
 
 
