@@ -5,11 +5,11 @@ import time
 import numpy as np
 from wrapper_yolo import model
 
-def start_annotated_stream(tello):
+def start_annotated_stream(tello, frame_reader):
     print("Live annotated stream started...")
 
     try:
-        cap = tello.get_frame_read()
+        cap = frame_reader
 
         while True:
             frame = cap.frame

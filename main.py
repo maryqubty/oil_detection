@@ -14,14 +14,26 @@ def main():
 
     tello.streamon()
     print("Video stream active.")
+    tello.streamon()
+    time.sleep(5)  # wait for stream to stabilize
 
-     # Start live annotated stream
-    threading.Thread(target=start_annotated_stream, args=(tello,), daemon=True).start()
+    #Get frame_reader once to avoid UDP conflicts
+    frame_reader = tello.get_frame_read()
+
+    # Wait until valid frame is available
+    while frame_reader.frame is None or frame_reader.frame.size == 0:
+        print("Waiting for frame...")
+        time.sleep(0.1)
+    frame = frame_reader.frame
+
+    # Start live annotated stream
+    threading.Thread(target=start_annotated_stream, args=(tello, frame_reader), daemon=True).start()
     time.sleep(2)  # Allow some time for the stream to start
 
-    # Start oil detection listener
-    listener_thread = threading.Thread(target=start_oil_detection_listener, args=(tello,))
+    # Start oil detection listener (in parallel)
+    listener_thread = threading.Thread(target=start_oil_detection_listener, args=(tello, frame_reader))
     listener_thread.start()
+
 
     # Start scanning movement (parallel)
     scan_room(tello)

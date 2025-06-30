@@ -2,10 +2,8 @@ import time
 import cv2
 from wrapper_yolo import detect_oil_in_frame
 
-def start_oil_detection_listener(tello):
+def start_oil_detection_listener(tello, frame_reader):
     print("Oil detection listener started.")
-
-    frame_reader = tello.get_frame_read()
 
     while True:
         time.sleep(0.1)
