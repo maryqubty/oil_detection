@@ -36,7 +36,7 @@ def main():
 
 
     # Start scanning movement (parallel)
-    scan_room(tello)
+    #scan_room(tello)
 
     # Wait for detection thread to finish
     listener_thread.join()

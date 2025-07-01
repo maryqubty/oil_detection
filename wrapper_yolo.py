@@ -44,8 +44,9 @@ def detect_oil_in_frame(frame) -> bool:
     results = model(img, augment=False, visualize=False)
 
     try:
-        detections = results[0]
-        return len(detections.boxes) > 0
+        detections = results[0]  # This is a tensor
+        return detections.shape[0] > 0  # if any detections exist
+
     except Exception as e:
         print(f"[Detection Error] {e}")
         return False
