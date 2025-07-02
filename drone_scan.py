@@ -6,19 +6,25 @@ def scan_room(tello):
     tello.takeoff()
     time.sleep(2)
 
-    tello.move_forward(5)
+    tello.move_forward(20)
     time.sleep(1)
 
     tello.rotate_counter_clockwise(90)
-    tello.move_forward(5)
+    time.sleep(1)
+
+    tello.move_forward(20)
     time.sleep(1)
 
     tello.rotate_counter_clockwise(90)
-    tello.move_forward(5)
+    time.sleep(1)
+    
+    tello.move_forward(20)
     time.sleep(1)
 
     tello.rotate_counter_clockwise(90)
-    tello.move_forward(5)
+    time.sleep(1)
+
+    tello.move_forward(20)
     time.sleep(1)
 
     tello.land()
