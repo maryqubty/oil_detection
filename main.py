@@ -34,10 +34,11 @@ def main():
     stop_event = threading.Event()
 
     # Start raw stream instead of annotated stream
-    threading.Thread(target=start_raw_stream, args=(tello, frame_reader), daemon=True).start()
+    #threading.Thread(target=start_raw_stream, args=(tello, frame_reader), daemon=True).start()
 
     # Start live annotated stream
-    #threading.Thread(target=start_annotated_stream, args=(tello, frame_reader), daemon=True).start()
+    threading.Thread(target=start_annotated_stream, args=(tello, frame_reader), daemon=True).start()
+
     time.sleep(2)  # Allow some time for the stream to start
 
     # Start oil detection listener (in parallel), with stop_event to control it and handle race conditions
