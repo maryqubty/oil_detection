@@ -46,8 +46,9 @@ def main():
 
 
     # Start scanning movement (parallel)
-    scan_room(tello)
+    #scan_room(tello)
     # Signal the listener to stop
+    time.sleep(20)
     stop_event.set()
 
     # Wait for detection thread to finish

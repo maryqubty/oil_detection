@@ -36,8 +36,9 @@ def start_annotated_stream(tello, frame_reader):
 
                 for box in boxes:
                     if len(box) >= 4:
-                        x1, y1, x2, y2 = map(int, box[:4])
-                        cv2.rectangle(padded_bgr, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                        x1, y1, x2, y2 = box[:4].tolist()
+                        cv2.rectangle(padded_bgr, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
+
 
                 # Show frame
                 cv2.imshow("YOLOv5 Oil Detection", padded_bgr)
