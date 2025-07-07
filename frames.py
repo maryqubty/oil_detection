@@ -1,8 +1,8 @@
 import cv2
 import os
 
-video_path = video_path = r'C:\Users\majdq\OneDrive\מסמכים\mary\OilDetectionProject\YoloV5(deadline_26_06)\Oil_Spill_TrainedOn.mp4'
-frame_rate = 100 # Lower frame_rate means more frames extracted, which can improve training.
+video_path = r'C:\mary\OilDetectionProject\demo_yolo_oil_detection\oil_detection\saved_videos\alley.mp4'
+frame_rate = 20 # Lower frame_rate means more frames extracted, which can improve training.
 output_dir = 'frames'
 os.makedirs(output_dir, exist_ok=True)
 

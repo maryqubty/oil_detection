@@ -6,6 +6,7 @@ import threading
 import time
 from raw_live_stream import start_raw_stream  
 import threading
+from raw_video_saver import save_raw_video
 
 
 def main():
@@ -38,18 +39,21 @@ def main():
 
     # Start live annotated stream
     threading.Thread(target=start_annotated_stream, args=(tello, frame_reader), daemon=True).start()
-
     time.sleep(2)  # Allow some time for the stream to start
 
     # Start oil detection listener (in parallel), with stop_event to control it and handle race conditions
     listener_thread = threading.Thread(target=start_oil_detection_listener, args=(tello, frame_reader, stop_event))
     listener_thread.start()
 
+    # Start raw video saver (in parallel)
+    video_saver_thread = threading.Thread(target=save_raw_video, args=(tello, frame_reader))
+    video_saver_thread.start()
+
 
     # Start scanning movement (parallel)
-    #scan_room(tello)
+    scan_room(tello)
     # Signal the listener to stop
-    time.sleep(20)
+    #time.sleep(20)
     stop_event.set()
 
     # Wait for detection thread to finish
