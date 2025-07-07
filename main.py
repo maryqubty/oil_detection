@@ -46,14 +46,13 @@ def main():
     listener_thread.start()
 
     # Start raw video saver (in parallel)
-    video_saver_thread = threading.Thread(target=save_raw_video, args=(tello, frame_reader))
-    video_saver_thread.start()
+    #video_saver_thread = threading.Thread(target=save_raw_video, args=(tello, frame_reader))
+    #video_saver_thread.start()
 
 
     # Start scanning movement (parallel)
     scan_room(tello)
     # Signal the listener to stop
-    #time.sleep(20)
     stop_event.set()
 
     # Wait for detection thread to finish
