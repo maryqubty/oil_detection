@@ -11,9 +11,9 @@ yolov5_path = Path(r"C:\mary\OilDetectionProject\yolov5")
 sys.path.append(str(yolov5_path))
 
 # Load YOLOv5 model using torch.hub (custom-trained)
-weights_path = r"C:\mary\OilDetectionProject\demo_yolo_oil_detection\oil_detection\weights\best_for_tello.pt"
+weights_path = r"C:\mary\OilDetectionProject\demo_yolo_oil_detection\oil_detection\weights\best_windows.pt"
 model = torch.hub.load(str(yolov5_path), 'custom', path=weights_path, source='local')
-model.conf = 0.25  # Confidence threshold
+model.conf = 0.30  # Confidence threshold
 
 # Create folder for saving annotated frames
 SAVE_DIR = Path("annotated_frames")

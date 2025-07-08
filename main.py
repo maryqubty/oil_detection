@@ -46,8 +46,8 @@ def main():
     listener_thread.start()
 
     # Start raw video saver (in parallel)
-    #video_saver_thread = threading.Thread(target=save_raw_video, args=(tello, frame_reader))
-    #video_saver_thread.start()
+    video_saver_thread = threading.Thread(target=save_raw_video, args=(tello, frame_reader))
+    video_saver_thread.start()
 
 
     # Start scanning movement (parallel)
